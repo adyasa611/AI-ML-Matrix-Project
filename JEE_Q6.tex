@@ -1,0 +1,87 @@
+\documentclass{beamer}
+\usetheme{Boadilla}
+
+\title{AIML Matrix Assignment}
+\subtitle{Using Beamer}
+\author{Adyasa Mohanty and Krati Arela}
+\institute{IIT Hyderabad}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Question}
+The sides of a rhombus ABC are parallel to the lines 
+(1 -1)x + 2 = 0
+(7 -1)x + 3 = 0
+If the diagonals of the rhombus intersect at P = (1,2) and the vertex A (different) from the origin is on the y-axis, then find the ordinate of A. 
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Code}
+\begin{semiverbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+A = np.array([1,-1])
+B = np.array([7,-1])
+C = np.linalg.norm(A)
+D = np.linalg.norm(B)
+
+E = np.array([(A[0]/C),(A[1]/C)])
+F = np.array([(B[0]/D),(B[1]/D)])
+G = E-F
+H = E+F
+slope1 = (G[1]/G[0])
+slope2 = (H[1]/H[0])
+
+POI = np.array([1,2])
+x = np.linspace(0.,5.)
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{semiverbatim}
+fig,ax = plt.subplots()
+ax.plot(x,(slope1*(x-(POI[0]))+POI[1]),'-o',markersize=10,markevery=x.size)
+ax.plot(x,(slope2*(x-(POI[0]))+POI[1]),'-o',markersize=10,markevery=x.size)
+
+ax.set_xlim((0.,5.))
+ax.set_ylim((0.,5.))
+
+ax.xaxis.set_ticks(np.arange(0.,5.,0.5))
+ax.yaxis.set_ticks(np.arange(0.,5.,0.5))
+
+plt.show()
+point1 = np.array([0,(slope1*(0-(POI[0]))+POI[1])])
+point2 = np.array([0,(slope2*(0-(POI[0]))+POI[1])])
+
+if point1[1] != 0:
+	print(point1)
+
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{semiverbatim}
+
+else:
+	print(point2)
+	
+
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}
+Thank You!
+\end{frame}
+
+
+
+
+
+\end{document}
+
